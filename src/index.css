@@ -1,13 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css?family=Orbitron|Montserrat:400,600,800');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+header {
+  background-color: hsl(0, 0%, 0%);
+}
+
+h1,
+h2,
+label {
+  font-family: Montserrat;
+}
+
+h1 {
+  font-size: 28pt;
+  font-weight: 800;
+}
+
+h2,
+label {
+  font-size: 16pt;
+  font-weight: 600;
+}
+
+form label,
+form text {
+  font-family: Montserrat;
+  font-weight: 400;
+}
+
+form label {
+  font-size: 14pt;
+}
+
+form text {
+  font-size: 12pt;
+}
+
+form input {
+  display: block;
+  width: 100%;
+}
+
+.App {
+  background-color: rgba(25, 25, 25, 1);
+}
+
+.logo {
+  font-family: Orbitron;
+}
+
+.button {
+  padding: 5px 26px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  max-width: 172px;
+  min-width: 172px;
+}
+
+.cta {
+  background-color: #fec004;
+  color: rgba(25, 25, 25, 1);
+  font-weight: 800;
+}
+
+.engage {
+  color: #fec004;
+  border: 1px solid #fec004;
+  font-size: 12pt;
+}
+
+.engaged {
+  padding: 0;
+}
+
+.user {
+  height: 100%;
+  width: 85%;
+  background-color: #383838;
+}
+
+.walletAddress,
+.exit {
+  height: 100%;
+}
+
+.walletAddress {
+  width: 60%;
+}
+
+.exit {
+  background-color: #a8a8a8;
+}
+
+.overlay {
+  background-color: rgba(51, 51, 51, 0.75);
+}
+
+.modal {
+  background-color: #000000;
+}
+
+.warning {
+  background-color: #a52222;
+}
+
+.tradingLong {
+  background-color: #17c3b2;
+}
+
+.tradingShort {
+  background-color: #d74e09;
+}
+
+.walletApp {
+  height: 100vh;
+  background-color: #171717;
+}
+
+.sendModal {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  height: auto;
+  max-height: 550px;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.assets button {
+  border: 1px solid #2274a5;
+  padding: 5px 26px;
+  width: 50%;
+}
+
+.assets button.rEth {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.assets button.weenus {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.percentages button {
+  width: 20%;
 }

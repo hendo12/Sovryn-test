@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import logo from './assets/sovryn-logo-white.svg';
+import EngageBtn from './components/EngageBtn';
+import Modal from './components/Modal';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+	const [walletEngaged, setWalletEngaged] = useState(false);
+	const [weenusBalance, setWeenusBalance] = useState(20000.00);
+	const [rethBalance, setRethBalance] = useState(32.00);
+	const [assetActive, setAssetActive] = useState('WEENUS');
+	// const []
+
+	const onWalletClick = () => {
+		setWalletEngaged(!walletEngaged);
+		console.log(walletEngaged);
+	}
+
+
+	return (
+		<div className="App">
+			<header>
+				<div className="container flex justify-between items-center py-2 px-4 mx-auto text-white">
+					<img src={logo} alt="logo" />
+					{/* <button className="engage button" walletengaged={walletEngaged} onClick={onWalletClick}>Engage Wallet</button> */}
+					<EngageBtn engaged={walletEngaged} onWalletClick={onWalletClick} />
+				</div>
+			</header>
+			<div className="container walletApp flex justify-center">
+				<div className="backdrop"></div>
+				<Modal 
+					assetActive={assetActive} 
+					setAssetActive={setAssetActive} 
+					weenusBalance={weenusBalance} 
+					rethBalance={rethBalance}
+				/>
+				{/* <div className="sendModal"></div> */}
+				<div className="reviewModal"></div>
+				<div className="transactionDetailsModal"></div>
+			</div>
+		</div>
+	);
 }
 
 export default App;
