@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance }) => {
+const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged }) => {
     let assetAmount;
     console.log(weenusBalance);
 
@@ -16,7 +16,7 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance }) => {
 	}
 
     return (
-        <div className="sendModal divide-solid border-white text-white font-bold pt-6 w-96">
+        <div className="sendModal text-white font-bold pt-6 w-96">
             <form className="flex flex-col justify-center">
                 <h1 className="text-center pb-4">SEND</h1>
                 <div className="py-4">
@@ -35,11 +35,11 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance }) => {
                             WEENUS
                         </button>
                     </div>
-                    <span className="text-xs font-normal">Available Balance: {assetAmount} {assetActive}</span>
+                    <span className="text-xs font-normal">Available Balance: {walletEngaged ? assetAmount : 'Engage wallet to see balance'} {walletEngaged ? assetActive : ''}</span>
                 </div>
                 <div className="py-4">
                     <label className="">Amount:</label>
-                    <input className="py-2 rounded-md"></input>
+                    <input className="py-2 rounded-md text-md font-semibold"></input>
                     <div className="percentages py-3 text-sm">
                         <button>10%</button>
                         <button>25%</button>
@@ -50,9 +50,14 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance }) => {
                 </div>
                 <div className="pb-6">
                     <label>Send To:</label>
-                    <input className="py-2 rounded-md text-center text-sm" placeholder="Type or Paste address"></input>
+                    <input 
+                        className="py-2 rounded-md text-center text-md font-semibold" 
+                        placeholder="Type or Paste address"
+                    >
+
+                    </input>
                 </div>
-                <button className="cta button mx-auto">SUBMIT</button>
+                <button className="cta button mx-auto text-xl">SUBMIT</button>
             </form>
         </div>
     )

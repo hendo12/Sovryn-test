@@ -26,12 +26,13 @@ const App = () => {
 				</div>
 			</header>
 			<div className="container walletApp flex justify-center">
-				<div className="backdrop"></div>
+				<div className={`${!walletEngaged ? "backdrop" : ""}`}></div>
 				<Modal 
 					assetActive={assetActive} 
 					setAssetActive={setAssetActive} 
 					weenusBalance={weenusBalance} 
 					rethBalance={rethBalance}
+					walletEngaged={walletEngaged}
 				/>
 				{/* <div className="sendModal"></div> */}
 				<div className="reviewModal"></div>

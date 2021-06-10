@@ -112,10 +112,6 @@ form input {
   background-color: #a8a8a8;
 }
 
-.overlay {
-  background-color: rgba(51, 51, 51, 0.75);
-}
-
 .modal {
   background-color: #000000;
 }
@@ -133,8 +129,9 @@ form input {
 }
 
 .walletApp {
-  height: 100vh;
+  height: 95vh;
   background-color: #171717;
+  position: relative;
 }
 
 .sendModal {
@@ -146,10 +143,22 @@ form input {
   margin-top: 30px;
 }
 
+.backdrop {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(51, 51, 51, 0.75);
+}
+
 .assets button {
   border: 1px solid #2274a5;
-  padding: 5px 26px;
+  padding: 8px 26px;
   width: 50%;
+}
+
+.assets button.active {
+  background-color: #2274a5;
 }
 
 .assets button.rEth {
