@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend }) => {
+const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend, setTransactionStep, targetWalletAddress, setTargetWalletAddress}) => {
     let assetAmount;
     console.log(weenusBalance);
 
@@ -12,7 +12,6 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wallet
 
     const onAssetClick = (e) => {
 		e.preventDefault();
-		console.log('asset clicked. event: ', e.target.id);
         if(e.target.id === 'WEENUS') {
             setAssetActive('WEENUS');
             setAssetAmountToSend(0);
@@ -32,11 +31,12 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wallet
     const onSubmitClick = (e) => {
         e.preventDefault();
         console.log('submit clicked');
-        const walletAddressEntered = true;
+        const walletAddressEntered = targetWalletAddress !== '';
 
         if(assetAmountToSend !== 0 && walletAddressEntered && assetAmountToSend < assetAmount) {
+            console.log('submit click valid');
             // move to next modal
-            
+            setTransactionStep('Review');
         }
     }
 
@@ -68,7 +68,8 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wallet
                     <input 
                         className="py-2 rounded-md text-md font-semibold text-black text-center" 
                         id="amountToSend" 
-                        value={assetAmountToSend} 
+                        value={assetAmountToSend}
+                        onChange={(e) => setAssetAmountToSend(e.target.value)}
                     />
                     <span className="amountAsset">{assetActive}</span>
                     <div className="percentages py-3 text-sm">
@@ -109,6 +110,8 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wallet
                     <input 
                         className="py-2 rounded-md text-center text-md font-semibold text-black" 
                         placeholder="Type or Paste address"
+                        value={targetWalletAddress}
+                        onChange={(e) => setTargetWalletAddress(e.target.value)}
                     />
                 </div>
                 <button className="cta button mx-auto text-xl" onClick={onSubmitClick}>SUBMIT</button>
@@ -116,4 +119,4 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wallet
     )
 }
 
-export default Modal;
+export default SendModal;

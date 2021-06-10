@@ -39,9 +39,6 @@ const App = () => {
 					setWeenusBalance={setWeenusBalance}
 					setRethBalance={setRethBalance}
 				/>
-				{/* <div className="sendModal"></div> */}
-				<div className="reviewModal"></div>
-				<div className="transactionDetailsModal"></div>
 			</div>
 		</div>
 	);

@@ -156,6 +156,7 @@ form input {
   padding: 30px;
   margin-top: 30px;
   display: inline-block;
+  background-color: #111;
 }
 
 .backdrop {

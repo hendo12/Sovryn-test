@@ -3,8 +3,9 @@ import SendModal from './SendModal';
 import ReviewModal from './ReviewModal';
 import DetailsModal from './DetailsModal';
 
-const RenderModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setWeenusBalance, setRethBalance }) => {
+const RenderModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance }) => {
     const [assetAmountToSend, setAssetAmountToSend] = useState(0);
+    const [targetWalletAddress, setTargetWalletAddress] = useState('');
 
     return (
         <div className="Modal text-white font-bold pt-8 w-96">
@@ -17,22 +18,27 @@ const RenderModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, 
                     walletEngaged={walletEngaged}
                     setAssetAmountToSend={setAssetAmountToSend}
                     assetAmountToSend={assetAmountToSend}
-                    transactionStep={transactionStep}
-					setWeenusBalance={setWeenusBalance}
-					setRethBalance={setRethBalance}
+                    setTransactionStep={setTransactionStep}
+                    targetWalletAddress={targetWalletAddress}
+                    setTargetWalletAddress={setTargetWalletAddress}
                 />
                 : null
             }
             { transactionStep === 'Review' ? 
                 <ReviewModal
                     assetActive={assetActive}
-
+                    setTransactionStep={setTransactionStep}
+                    assetAmountToSend={assetAmountToSend}
                 />
                 : null
             }
             { transactionStep === 'Details' ? 
                 <DetailsModal 
-                    
+                    setTransactionStep={setTransactionStep}
+                    weenusBalance={weenusBalance}
+                    rethBalance={rethBalance}
+                    setWeenusBalance={setWeenusBalance}
+                    setRethBalance={setRethBalance}
                 />
                 : null
             }
