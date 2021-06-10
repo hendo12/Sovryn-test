@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import logo from './assets/sovryn-logo-white.svg';
 import EngageBtn from './components/EngageBtn';
-import Modal from './components/Modal';
+import RenderModal from './components/RenderModal';
 
 const App = () => {
 	const [walletEngaged, setWalletEngaged] = useState(false);
 	const [weenusBalance, setWeenusBalance] = useState(20000.00);
 	const [rethBalance, setRethBalance] = useState(32.00);
 	const [assetActive, setAssetActive] = useState('WEENUS');
+	const [transactionStep, setTransactionStep] = useState('Send');
 	// const []
 
 	const onWalletClick = () => {
@@ -27,12 +28,16 @@ const App = () => {
 			</header>
 			<div className="walletApp mx-auto flex justify-center items-start">
 				<div className={`${!walletEngaged ? "backdrop" : ""}`}></div>
-				<Modal 
+				<RenderModal 
 					assetActive={assetActive} 
 					setAssetActive={setAssetActive} 
 					weenusBalance={weenusBalance} 
 					rethBalance={rethBalance}
 					walletEngaged={walletEngaged}
+					transactionStep={transactionStep}
+					setTransactionStep={setTransactionStep}
+					setWeenusBalance={setWeenusBalance}
+					setRethBalance={setRethBalance}
 				/>
 				{/* <div className="sendModal"></div> */}
 				<div className="reviewModal"></div>

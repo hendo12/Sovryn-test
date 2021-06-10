@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged }) => {
-    const [assetAmountToSend, setAssetAmountToSend] = useState(0);
+const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend }) => {
     let assetAmount;
     console.log(weenusBalance);
 
@@ -37,18 +36,18 @@ const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wa
 
         if(assetAmountToSend !== 0 && walletAddressEntered && assetAmountToSend < assetAmount) {
             // move to next modal
+            
         }
     }
 
     return (
-        <div className="sendModal text-white font-bold pt-8 w-96">
-            <form className="flex flex-col justify-center">
+        <form className="send flex flex-col justify-center">
                 <h1 className="text-center pb-4">SEND</h1>
                 <div className="py-4">
                     <label>Asset:</label>
                     <div className="flex justify-around assets">
                         <button 
-                            className={`rEth font-semibold ${assetActive === 'rEth' ? "active" : "inactive"}`}
+                            className={`rEth font-semibold ${assetActive === 'rETH' ? "active" : "inactive"}`}
                             onClick={onAssetClick}
                             id="rETH"
                         >
@@ -64,13 +63,14 @@ const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wa
                     </div>
                     <span className="text-xs font-normal">Available Balance: {walletEngaged ? assetAmount : 'Engage wallet to see balance'} {walletEngaged ? assetActive : ''}</span>
                 </div>
-                <div className="py-4">
+                <div className="py-4 amountSection">
                     <label className="">Amount:</label>
                     <input 
                         className="py-2 rounded-md text-md font-semibold text-black text-center" 
                         id="amountToSend" 
                         value={assetAmountToSend} 
                     />
+                    <span className="amountAsset">{assetActive}</span>
                     <div className="percentages py-3 text-sm">
                         <button 
                             onClick={(e) => onPercentageClick(e, 10)}
@@ -107,14 +107,13 @@ const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wa
                 <div className="pb-6">
                     <label>Send To:</label>
                     <input 
-                        className="py-2 rounded-md text-center text-md font-semibold" 
+                        className="py-2 rounded-md text-center text-md font-semibold text-black" 
                         placeholder="Type or Paste address"
                     />
                 </div>
                 <button className="cta button mx-auto text-xl" onClick={onSubmitClick}>SUBMIT</button>
             </form>
-        </div>
     )
 }
 
-export default SendModal;
+export default Modal;
