@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged }) => {
+const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged }) => {
     const [assetAmountToSend, setAssetAmountToSend] = useState(0);
     let assetAmount;
     console.log(weenusBalance);
@@ -117,4 +117,4 @@ const Modal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wallet
     )
 }
 
-export default Modal;
+export default SendModal;

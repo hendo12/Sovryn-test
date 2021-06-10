@@ -25,7 +25,7 @@ const App = () => {
 					<EngageBtn engaged={walletEngaged} onWalletClick={onWalletClick} />
 				</div>
 			</header>
-			<div className="container walletApp flex justify-center">
+			<div className="walletApp mx-auto flex justify-center items-start">
 				<div className={`${!walletEngaged ? "backdrop" : ""}`}></div>
 				<Modal 
 					assetActive={assetActive} 
