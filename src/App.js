@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './assets/sovryn-logo-white.svg';
 import WalletBtn from './components/WalletBtn';
 import RenderStep from './components/RenderStep';
 
 const Web3 = require('web3');
+let web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
 
 const App = () => {
 	const [walletEngaged, setWalletEngaged] = useState(false);
@@ -12,25 +13,18 @@ const App = () => {
 	const [assetActive, setAssetActive] = useState('WEENUS');
 	const [transactionStep, setTransactionStep] = useState('Send');
 	const [walletAddress, setWalletAddress] = useState('');
-	// let web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
 
 	const ethEnabled = async () => {
 		if (window.ethereum) {
 		  await window.ethereum.send('eth_requestAccounts');
-		  window.web3 = new Web3(window.ethereum);
+		  web3 = new Web3(window.ethereum);
 
-		  window.web3.eth.getAccounts()
-		  .then((res) => {
-			  console.log(res[0]);
-			  
+		  web3.eth.getAccounts()
+		  .then((res) => {			  
 			  setWalletAddress(res[0]);
-			  console.log('user wallet address: ', walletAddress);
 			  setWalletEngaged(true);
-		  });
-
-
-
-
+			});
+			
 		  return true;
 		}
 		return false;
@@ -45,6 +39,21 @@ const App = () => {
 			//sign user out
 		}
 	}
+
+	useEffect( () => { 
+		console.log('wallet address effect: ', walletAddress);
+		if(walletAddress !== '') {
+			const ethBalance = web3.eth.getBalance(walletAddress, (error, wei) => {
+				console.log(web3.utils.fromWei(wei, 'ether'));
+				setRethBalance(web3.utils.fromWei(wei, 'ether'));
+			});
+			console.log('effect eth bal: ', rethBalance);
+			// const ethBalance = web3.utils.fromWei(weiBalance, 'ether');
+			// setRethBalance(ethBalance);
+		}
+		// console.log('eth balance: ', rethBalance);
+
+	}, [walletAddress]);
 
 	return (
 		<div className="App">
