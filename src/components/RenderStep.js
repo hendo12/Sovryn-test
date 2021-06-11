@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import SendModal from './SendModal';
-import ReviewModal from './ReviewModal';
-import DetailsModal from './DetailsModal';
+import SendStep from './SendStep';
+import ReviewStep from './ReviewStep';
+import DetailsStep from './DetailsStep';
 
-const RenderModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance }) => {
+const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance }) => {
     const [assetAmountToSend, setAssetAmountToSend] = useState(0);
     const [targetWalletAddress, setTargetWalletAddress] = useState('');
 
     return (
-        <div className="Modal text-white font-bold pt-8 w-96">
+        <div className="Modal text-white font-bold pt-8 w-96" id="Modal">
             { transactionStep === 'Send' ? 
-                <SendModal 
+                <SendStep 
                     assetActive={assetActive} 
                     setAssetActive={setAssetActive} 
                     weenusBalance={weenusBalance} 
@@ -25,20 +25,23 @@ const RenderModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, 
                 : null
             }
             { transactionStep === 'Review' ? 
-                <ReviewModal
+                <ReviewStep
                     assetActive={assetActive}
                     setTransactionStep={setTransactionStep}
                     assetAmountToSend={assetAmountToSend}
+                    targetWalletAddress={targetWalletAddress}
                 />
                 : null
             }
             { transactionStep === 'Details' ? 
-                <DetailsModal 
+                <DetailsStep 
                     setTransactionStep={setTransactionStep}
                     weenusBalance={weenusBalance}
                     rethBalance={rethBalance}
                     setWeenusBalance={setWeenusBalance}
                     setRethBalance={setRethBalance}
+                    setTargetWalletAddress={setTargetWalletAddress}
+                    setAssetAmountToSend={setAssetAmountToSend}
                 />
                 : null
             }
@@ -46,4 +49,4 @@ const RenderModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, 
     )
 }
 
-export default RenderModal;
+export default RenderStep;

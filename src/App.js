@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './assets/sovryn-logo-white.svg';
 import EngageBtn from './components/EngageBtn';
-import RenderModal from './components/RenderModal';
+import RenderStep from './components/RenderStep';
 
 const App = () => {
 	const [walletEngaged, setWalletEngaged] = useState(false);
@@ -20,15 +20,15 @@ const App = () => {
 	return (
 		<div className="App">
 			<header>
-				<div className="container flex justify-between items-center py-2 px-4 mx-auto text-white">
-					<img src={logo} alt="logo" />
+				<div className="container flex justify-between items-center py-1 px-4 mx-auto text-white">
+					<img src={logo} alt="logo" className="logo" />
 					{/* <button className="engage button" walletengaged={walletEngaged} onClick={onWalletClick}>Engage Wallet</button> */}
 					<EngageBtn engaged={walletEngaged} onWalletClick={onWalletClick} />
 				</div>
 			</header>
 			<div className="walletApp mx-auto flex justify-center items-start">
-				<div className={`${!walletEngaged ? "backdrop" : ""}`}></div>
-				<RenderModal 
+				<div className={`${!walletEngaged ? "backdrop" : ""} bd-1`}></div>
+				<RenderStep 
 					assetActive={assetActive} 
 					setAssetActive={setAssetActive} 
 					weenusBalance={weenusBalance} 

@@ -13,11 +13,6 @@ body {
   box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 header {
   background-color: hsl(0, 0%, 0%);
 }
@@ -74,10 +69,6 @@ form input {
   background-color: rgba(25, 25, 25, 1);
 }
 
-.logo {
-  font-family: Orbitron;
-}
-
 .button {
   padding: 5px 26px;
   height: 40px;
@@ -99,6 +90,11 @@ form input {
   background-color: rgba(254, 192, 4, 0.8);
 }
 
+.disabled {
+  pointer-events: none;
+  background-color: rgba(254, 192, 4, 0.5);
+}
+
 .engage {
   color: #fec004;
   border: 1px solid #fec004;
@@ -111,11 +107,18 @@ form input {
 
 .user {
   height: 100%;
-  width: 85%;
+  width: 80%;
   background-color: #383838;
 }
 
-.walletAddress,
+.userImg {
+  background-color: pink;
+  background-size: contain;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+}
+
 .exit {
   height: 100%;
 }
@@ -126,10 +129,6 @@ form input {
 
 .exit {
   background-color: #a8a8a8;
-}
-
-.modal {
-  background-color: #000000;
 }
 
 .warning {
@@ -155,8 +154,23 @@ form input {
   border-radius: 30px;
   padding: 30px;
   margin-top: 30px;
-  display: inline-block;
+  /* height: 500px; */
+  display: flex;
+  flex-direction: column;
   background-color: #111;
+  height: auto;
+  /* transition: height 2s ease-in; */
+  -webkit-transition: all 2s ease-out;
+  -moz-transition: all 2s ease-out;
+  -o-transition: all 2s ease-out;
+  transition: all 2s ease-out;
+}
+
+.bd-1 {
+  transition: all 0.5s ease;
+  background-color: transparent;
+  opacity: 0;
+  z-index: 0;
 }
 
 .backdrop {
@@ -165,6 +179,8 @@ form input {
   width: 100%;
   z-index: 1;
   background-color: rgba(51, 51, 51, 0.75);
+  opacity: 1;
+  /* transition: opacity 1s ease; */
 }
 
 .assets button {
@@ -197,4 +213,28 @@ form input {
 .percentages button:hover,
 .assets button:hover {
   background-color: rgba(49, 143, 197, 0.3);
+}
+
+.txHash {
+  color: #fec004;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    width: 40%;
+  }
+
+  .button {
+    max-width: 53%;
+    min-width: 53%;
+    padding: 5px 10px;
+  }
+
+  .walletApp {
+    height: 100vh;
+  }
+
+  .backdrop {
+    height: 100vh;
+  }
 }

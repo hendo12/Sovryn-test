@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend, setTransactionStep, targetWalletAddress, setTargetWalletAddress}) => {
+const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend, setTransactionStep, targetWalletAddress, setTargetWalletAddress}) => {
     let assetAmount;
-    console.log(weenusBalance);
+    // const modalHeight = 575;
+    // document.getElementById('Modal').setAttribute("style", `height: ${modalHeight}px`);
 
     if(assetActive === 'WEENUS') {
         assetAmount = weenusBalance;
     } else {
         assetAmount = rethBalance;
+    }
+
+    const walletAddressEntered = targetWalletAddress !== '';
+    let submitActive = false;
+
+    if (assetAmount > 0 && walletAddressEntered && assetAmountToSend <= assetAmount && assetAmount !== null) {
+        submitActive = true;
+    } else {
+        submitActive = false;
     }
 
     const onAssetClick = (e) => {
@@ -31,13 +41,8 @@ const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wa
     const onSubmitClick = (e) => {
         e.preventDefault();
         console.log('submit clicked');
-        const walletAddressEntered = targetWalletAddress !== '';
 
-        if(assetAmountToSend !== 0 && walletAddressEntered && assetAmountToSend < assetAmount) {
-            console.log('submit click valid');
-            // move to next modal
-            setTransactionStep('Review');
-        }
+        setTransactionStep('Review');
     }
 
     return (
@@ -114,9 +119,9 @@ const SendModal = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wa
                         onChange={(e) => setTargetWalletAddress(e.target.value)}
                     />
                 </div>
-                <button className="cta button mx-auto text-xl" onClick={onSubmitClick}>SUBMIT</button>
+                <button className={`cta button mx-auto text-xl ${submitActive ? '' : 'disabled'}`} onClick={onSubmitClick}>SUBMIT</button>
             </form>
     )
 }
 
-export default SendModal;
+export default SendStep;
