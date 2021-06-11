@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend, setTransactionStep, targetWalletAddress, setTargetWalletAddress}) => {
     let assetAmount;
@@ -66,7 +66,7 @@ const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wal
                             WEENUS
                         </button>
                     </div>
-                    <span className="text-xs font-normal">Available Balance: {walletEngaged ? assetAmount : 'Engage wallet to see balance'} {walletEngaged ? assetActive : ''}</span>
+                    <span className="text-xs font-normal">Available Balance: {walletEngaged ? assetAmount : 'Engage wallet to connect to metamask'} {walletEngaged ? assetActive : ''}</span>
                 </div>
                 <div className="py-4 amountSection">
                     <label className="">Amount:</label>

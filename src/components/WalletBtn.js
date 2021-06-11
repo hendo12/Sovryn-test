@@ -1,8 +1,8 @@
 import React from 'react';
 
-const walletAddress = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
+// const walletAddress = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
 
-const WalletBtn = ({ engaged, onWalletClick }) => {
+const WalletBtn = ({ engaged, onWalletClick, walletAddress }) => {
     if(engaged) {
         return (
             <button className="button engaged flex items-center" onClick={onWalletClick}>
