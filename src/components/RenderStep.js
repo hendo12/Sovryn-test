@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import SendStep from './SendStep';
-import ReviewStep from './ReviewStep';
-import DetailsStep from './DetailsStep';
+import SendStep from './Steps/SendStep';
+import ReviewStep from './Steps/ReviewStep';
+import DetailsStep from './Steps/DetailsStep';
 
 const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance }) => {
     const [assetAmountToSend, setAssetAmountToSend] = useState(0);
