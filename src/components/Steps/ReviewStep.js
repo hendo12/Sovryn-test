@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReviewStep = ({ assetActive, setTransactionStep, assetAmountToSend, targetWalletAddress, walletAddress, sendEth }) => {
+const ReviewStep = ({ assetActive, assetAmountToSend, targetWalletAddress, walletAddress, sendEth }) => {
     const onConfirmClick = () => {
         sendEth();
     }

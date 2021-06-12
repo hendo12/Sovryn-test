@@ -26,7 +26,6 @@ const App = () => {
 
 		  web3.eth.getAccounts()
 		  .then((res) => {	
-			//   console.log('user accounts response: ', res);		  
 			  setWalletAddress(res[0]);
 			  setTimeout(setWalletEngaged(true), 1000);
 			});
@@ -60,32 +59,19 @@ const App = () => {
 			});
 		};
 
-		// web3.eth.sendTransaction(transactionObject, (error, result) => {
-		// 	// console.log('send eth error: ', error);
-		// 	// console.log('send eth result: ', result);
-		// 	setTransactionHash(result);
-		// 	setTransactionStep('Details');
-		// 	setTimeout(getEthBalance, 15000);
-		// });
-
 		web3.eth.sendTransaction(transactionObject)
 		.on('transactionHash', (hash) => {
 			setTransactionHash(hash);
 			setTransactionStep('Details');
 		})
-		.on('receipt', (receipt) => {
-			// console.log('send receipt: ', receipt);
-		})
 		.on('confirmation', (confirmationNumber, receipt) => {
 			// console.log('eth transaction confirmation number: ', confirmationNumber);
 			// console.log('eth confirmation receipt: ', receipt);
+
+			//I'm pretty sure I should be able to check tx status from here and update as well
 			getEthBalance();
 		})
 	};
-
-	// const checkTransactionStatus = () => {
-	// 	web3.eth.getTransactionReceipt(transactionHash);
-	// }
 
 	useEffect( () => { 
 		const getEthBalance = () => {
@@ -98,13 +84,11 @@ const App = () => {
 			const tokenInst = new web3.eth.Contract(WeenusToken, WeenusTokenAddress);
 
 			tokenInst.methods.balanceOf(walletAddress).call().then((bal) => {
-				// console.log('weenus bal: ', bal);
 				setWeenusBalance(bal);
 			})
 		}
 
 		if(walletAddress !== '') {
-			// console.log('state wallet address is: ', walletAddress);
 			getEthBalance();
 			getWeenusBalance();
 		}
