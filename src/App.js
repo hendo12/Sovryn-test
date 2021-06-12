@@ -26,9 +26,9 @@ const App = () => {
 
 		  web3.eth.getAccounts()
 		  .then((res) => {	
-			  console.log('user accounts response: ', res);		  
+			//   console.log('user accounts response: ', res);		  
 			  setWalletAddress(res[0]);
-			  setWalletEngaged(true);
+			  setTimeout(setWalletEngaged(true), 1000);
 			});
 			
 		  return true;
@@ -54,12 +54,33 @@ const App = () => {
 			'chain': 'ropsten'
 		};
 
-		web3.eth.sendTransaction(transactionObject, (error, result) => {
-			console.log('send eth error: ', error);
-			console.log('send eth result: ', result);
-			setTransactionHash(result);
+		const getEthBalance = () => {
+			web3.eth.getBalance(walletAddress, (error, wei) => {
+				setRethBalance(web3.utils.fromWei(wei, 'ether'));
+			});
+		};
+
+		// web3.eth.sendTransaction(transactionObject, (error, result) => {
+		// 	// console.log('send eth error: ', error);
+		// 	// console.log('send eth result: ', result);
+		// 	setTransactionHash(result);
+		// 	setTransactionStep('Details');
+		// 	setTimeout(getEthBalance, 15000);
+		// });
+
+		web3.eth.sendTransaction(transactionObject)
+		.on('transactionHash', (hash) => {
+			setTransactionHash(hash);
 			setTransactionStep('Details');
-		});
+		})
+		.on('receipt', (receipt) => {
+			// console.log('send receipt: ', receipt);
+		})
+		.on('confirmation', (confirmationNumber, receipt) => {
+			// console.log('eth transaction confirmation number: ', confirmationNumber);
+			// console.log('eth confirmation receipt: ', receipt);
+			getEthBalance();
+		})
 	};
 
 	// const checkTransactionStatus = () => {
@@ -83,7 +104,7 @@ const App = () => {
 		}
 
 		if(walletAddress !== '') {
-			console.log('state wallet address is: ', walletAddress);
+			// console.log('state wallet address is: ', walletAddress);
 			getEthBalance();
 			getWeenusBalance();
 		}
@@ -120,6 +141,7 @@ const App = () => {
 					setTargetWalletAddress={setTargetWalletAddress}
 					sendEth={sendEth}
 					transactionHash={transactionHash}
+					setTransactionHash={setTransactionHash}
 				/>
 			</div>
 		</div>

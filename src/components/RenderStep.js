@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SendStep from './Steps/SendStep';
 import ReviewStep from './Steps/ReviewStep';
 import DetailsStep from './Steps/DetailsStep';
 
-const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance, walletAddress, assetAmountToSend, setAssetAmountToSend, targetWalletAddress, setTargetWalletAddress, sendEth, transactionHash }) => {
+const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance, walletAddress, assetAmountToSend, setAssetAmountToSend, targetWalletAddress, setTargetWalletAddress, sendEth, transactionHash, setTransactionHash }) => {
 
     return (
         <div className="Modal text-white font-bold pt-8 w-96" id="Modal">
@@ -43,6 +43,7 @@ const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, w
                     setTargetWalletAddress={setTargetWalletAddress}
                     setAssetAmountToSend={setAssetAmountToSend}
                     transactionHash={transactionHash}
+                    setTransactionHash={setTransactionHash}
                 />
                 : null
             }

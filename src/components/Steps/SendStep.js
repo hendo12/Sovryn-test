@@ -3,8 +3,6 @@ import ethLogo from '../../assets/eth-diamond-rainbow.png';
 
 const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend, setTransactionStep, targetWalletAddress, setTargetWalletAddress}) => {
     let assetAmount;
-    // const modalHeight = 575;
-    // document.getElementById('Modal').setAttribute("style", `height: ${modalHeight}px`);
 
     if(assetActive === 'WEENUS') {
         assetAmount = weenusBalance;
@@ -41,7 +39,6 @@ const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wal
 
     const onSubmitClick = (e) => {
         e.preventDefault();
-        console.log('submit clicked');
 
         setTransactionStep('Review');
     }

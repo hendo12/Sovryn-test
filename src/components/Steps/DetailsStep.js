@@ -1,15 +1,12 @@
 import React from 'react';
 
-const DetailsStep = ({ setTransactionStep, setTargetWalletAddress, setAssetAmountToSend, transactionHash }) => {
+const DetailsStep = ({ setTransactionStep, setTargetWalletAddress, setAssetAmountToSend, transactionHash, setTransactionHash }) => {
     const onCloseClick = () => {
-        //update active asset balance
         setTargetWalletAddress('');
         setAssetAmountToSend(0);
         setTransactionStep('Send');
+        setTransactionHash('');
     }
-
-    // const modalHeight = 400;
-    // document.getElementById('Modal').setAttribute("style", `height: ${modalHeight}px`);
 
     return (
         <div className="details text-center">

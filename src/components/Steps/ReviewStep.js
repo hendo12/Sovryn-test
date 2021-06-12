@@ -5,9 +5,6 @@ const ReviewStep = ({ assetActive, setTransactionStep, assetAmountToSend, target
         sendEth();
     }
 
-    // const modalHeight = 451;
-    // document.getElementById('Modal').setAttribute("style", `height: ${modalHeight}px`);
-
     return (
         <div className="review text-center">
             <h2 className="py-2">Review Transaction</h2>
