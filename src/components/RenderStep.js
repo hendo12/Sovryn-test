@@ -3,9 +3,7 @@ import SendStep from './Steps/SendStep';
 import ReviewStep from './Steps/ReviewStep';
 import DetailsStep from './Steps/DetailsStep';
 
-const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance }) => {
-    const [assetAmountToSend, setAssetAmountToSend] = useState(0);
-    const [targetWalletAddress, setTargetWalletAddress] = useState('');
+const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, transactionStep, setTransactionStep, setWeenusBalance, setRethBalance, walletAddress, assetAmountToSend, setAssetAmountToSend, targetWalletAddress, setTargetWalletAddress, sendEth, transactionHash }) => {
 
     return (
         <div className="Modal text-white font-bold pt-8 w-96" id="Modal">
@@ -30,6 +28,8 @@ const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, w
                     setTransactionStep={setTransactionStep}
                     assetAmountToSend={assetAmountToSend}
                     targetWalletAddress={targetWalletAddress}
+                    walletAddress={walletAddress}
+                    sendEth={sendEth}
                 />
                 : null
             }
@@ -42,6 +42,7 @@ const RenderStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, w
                     setRethBalance={setRethBalance}
                     setTargetWalletAddress={setTargetWalletAddress}
                     setAssetAmountToSend={setAssetAmountToSend}
+                    transactionHash={transactionHash}
                 />
                 : null
             }

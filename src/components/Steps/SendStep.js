@@ -1,4 +1,5 @@
 import React from 'react';
+import ethLogo from '../../assets/eth-diamond-rainbow.png';
 
 const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, walletEngaged, setAssetAmountToSend, assetAmountToSend, setTransactionStep, targetWalletAddress, setTargetWalletAddress}) => {
     let assetAmount;
@@ -34,7 +35,7 @@ const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wal
     const onPercentageClick = (e, divisor) => {
         e.preventDefault();
 
-        const result = Math.round(assetAmount / divisor);
+        const result = Math.round((assetAmount / divisor) * 100) / 100;
         setAssetAmountToSend(result);
     }
 
@@ -52,17 +53,19 @@ const SendStep = ({ assetActive, setAssetActive, weenusBalance, rethBalance, wal
                     <label>Asset:</label>
                     <div className="flex justify-around assets">
                         <button 
-                            className={`rEth font-semibold ${assetActive === 'rETH' ? "active" : "inactive"}`}
+                            className={`rEth font-semibold ${assetActive === 'rETH' ? "active" : "inactive"} flex items-center justify-center`}
                             onClick={onAssetClick}
                             id="rETH"
                         >
+                            <img src={ethLogo} alt="eth logo" className="ethLogo mr-3" />
                             rETH
                         </button>
                         <button 
-                            className={`weenus font-semibold ${assetActive === 'WEENUS' ? "active" : "inactive"}`}
+                            className={`weenus font-semibold ${assetActive === 'WEENUS' ? "active" : "inactive"} flex items-center justify-around`}
                             onClick={onAssetClick}
                             id="WEENUS"
                         >
+                            <span className="mr-3">💪</span>
                             WEENUS
                         </button>
                     </div>

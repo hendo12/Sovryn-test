@@ -203,6 +203,10 @@ form input {
   border-bottom-right-radius: 10px;
 }
 
+.ethLogo {
+  width: 15px;
+}
+
 .percentages button {
   width: 20%;
   border-color: #2274a5;
@@ -213,6 +217,10 @@ form input {
 .percentages button:hover,
 .assets button:hover {
   background-color: rgba(49, 143, 197, 0.3);
+}
+
+.wrapAddress {
+  word-wrap: break-word;
 }
 
 .txHash {

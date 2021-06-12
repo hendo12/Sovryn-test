@@ -15,6 +15,9 @@ const App = () => {
 	const [assetActive, setAssetActive] = useState('rETH');
 	const [transactionStep, setTransactionStep] = useState('Send');
 	const [walletAddress, setWalletAddress] = useState('');
+	const [assetAmountToSend, setAssetAmountToSend] = useState(0);
+    const [targetWalletAddress, setTargetWalletAddress] = useState('');
+	const [transactionHash, setTransactionHash] = useState('');
 
 	const ethEnabled = async () => {
 		if (window.ethereum) {
@@ -41,7 +44,27 @@ const App = () => {
 			setWalletEngaged(false);
 			//sign user out
 		}
-	}
+	};
+
+	const sendEth = () => {
+		const transactionObject = {
+			'from': walletAddress,
+			'to': targetWalletAddress, 
+			'value': web3.utils.toWei(`${assetAmountToSend}`, 'ether'),
+			'chain': 'ropsten'
+		};
+
+		web3.eth.sendTransaction(transactionObject, (error, result) => {
+			console.log('send eth error: ', error);
+			console.log('send eth result: ', result);
+			setTransactionHash(result);
+			setTransactionStep('Details');
+		});
+	};
+
+	// const checkTransactionStatus = () => {
+	// 	web3.eth.getTransactionReceipt(transactionHash);
+	// }
 
 	useEffect( () => { 
 		const getEthBalance = () => {
@@ -60,10 +83,11 @@ const App = () => {
 		}
 
 		if(walletAddress !== '') {
+			console.log('state wallet address is: ', walletAddress);
 			getEthBalance();
 			getWeenusBalance();
 		}
-	}, [walletAddress]);
+	}, [walletAddress, transactionHash]);
 
 	return (
 		<div className="App">
@@ -89,6 +113,13 @@ const App = () => {
 					setTransactionStep={setTransactionStep}
 					setWeenusBalance={setWeenusBalance}
 					setRethBalance={setRethBalance}
+					walletAddress={walletAddress}
+					assetAmountToSend={assetAmountToSend}
+					setAssetAmountToSend={setAssetAmountToSend}
+					targetWalletAddress={targetWalletAddress}
+					setTargetWalletAddress={setTargetWalletAddress}
+					sendEth={sendEth}
+					transactionHash={transactionHash}
 				/>
 			</div>
 		</div>
